@@ -1,8 +1,8 @@
-resource "kubernetes_deployment" "jenkins" {
+resource "kubernetes_deployment" "nginx" {
   metadata {
-    name = "jenkins"
+    name = "nginx"
     labels = {
-      App = "jenkins"
+      App = "nginx"
     }
   }
 
@@ -10,22 +10,22 @@ resource "kubernetes_deployment" "jenkins" {
     replicas = 1
     selector {
       match_labels = {
-        App = "jenkins"
+        App = "nginx"
       }
     }
     template {
       metadata {
         labels = {
-          App = "jenkins"
+          App = "nginx"
         }
       }
       spec {
         container {
-          image = "jenkins/jenkins:latest"
-          name  = "example"
+          image = "nginx:latest"
+          name  = "nginx"
 
           port {
-            container_port = 8080
+            container_port = 80
           }
 
           resources {
@@ -51,11 +51,11 @@ resource "kubernetes_service" "nginx" {
   }
   spec {
     selector = {
-      App = kubernetes_deployment.jenkins.spec.0.template.0.metadata[0].labels.App
+      App = kubernetes_deployment.nginx.spec.0.template.0.metadata[0].labels.App
     }
     port {
-      port        = 7080
-      target_port = 8080
+      port        = 70
+      target_port = 80
     }
 
     type = "LoadBalancer"
