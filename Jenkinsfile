@@ -8,22 +8,15 @@ pipeline {
             }
         }
         
-        stage ("terraform init") {
+        stage ("/opt/homebrew/bin/terraform init") {
             steps {
-                sh ('terraform init -reconfigure') 
+                sh ('/opt/homebrew/bin/terraform init -reconfigure') 
             }
         }
-        stage ("terraform plan") {
+        stage ("/opt/homebrew/bin/terraform plan") {
             steps {
-                sh ('terraform plan') 
+                sh ('/opt/homebrew/bin/terraform plan') 
             }
-        }
-                
-        stage ("terraform Action") {
-            steps {
-                echo "Terraform action is --> ${action}"
-                sh ('terraform ${action} --auto-approve') 
-           }
         }
     }
 }
