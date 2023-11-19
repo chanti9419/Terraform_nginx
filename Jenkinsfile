@@ -8,19 +8,19 @@ pipeline {
             }
         }
         
-        stage ("/opt/homebrew/bin/terraform init") {
+        stage ("/usr/bin/terraform init") {
             steps {
-                sh ('/opt/homebrew/bin/terraform init -reconfigure') 
+                sh ('/usr/bin/terraform init -reconfigure') 
             }
         }
-        stage ("/opt/homebrew/bin/terraform plan") {
+        stage ("/usr/bin/terraform plan") {
             steps {
-                sh ('/opt/homebrew/bin/terraform plan') 
+                sh ('/usr/bin/terraform plan') 
             }
         }
-        stage ("/opt/homebrew/bin/terraform apply") {
+        stage ("/usr/bin/terraform apply") {
             steps {
-                sh ('/opt/homebrew/bin/terraform apply --auto-approve') 
+                sh ('/usr/bin/terraform apply --auto-approve') 
             }
         }
     }
