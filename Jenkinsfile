@@ -18,5 +18,10 @@ pipeline {
                 sh ('/opt/homebrew/bin/terraform plan') 
             }
         }
+        stage ("/opt/homebrew/bin/terraform apply") {
+            steps {
+                sh ('/opt/homebrew/bin/terraform apply --auto-approve') 
+            }
+        }
     }
 }
